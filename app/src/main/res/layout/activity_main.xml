@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.gesture.GestureOverlayView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/gestures"
+    android:layout_width="fill_parent" android:layout_height="fill_parent"
+    android:gestureStrokeType="multiple" android:fadeOffset="800">
+    <LinearLayout android:orientation="vertical"
+        android:layout_gravity="center" android:layout_width="fill_parent"
+        android:padding="30dip" android:gravity="center" android:background="@drawable/degradado"
+        android:layout_height="fill_parent">
+        <TextView android:layout_height="wrap_content"
+            android:layout_width="wrap_content" android:layout_gravity="center"
+            android:textSize="25sp" android:paddingBottom="20dip"
+            android:text="@string/tituloAplicacion" android:textColor="@color/colordetitulo" />
+        <Button android:id="@+id/button1" android:layout_height="wrap_content"
+            android:layout_gravity="center" android:layout_width="fill_parent"
+            android:text="@string/Arrancar"></Button>
+        <Button android:id="@+id/button2" android:layout_height="wrap_content"
+            android:text="@string/Configurar" android:layout_gravity="center"
+            android:layout_width="fill_parent"></Button>
+        <Button android:id="@+id/button3" android:layout_height="wrap_content"
+            android:text="@string/Acercade" android:layout_gravity="center"
+            android:layout_width="fill_parent"></Button>
+        <Button android:text="@string/Salir" android:id="@+id/button4"
+            android:layout_height="wrap_content" android:layout_gravity="center"
+            android:layout_width="fill_parent"></Button>
+    </LinearLayout>
+</android.gesture.GestureOverlayView>
