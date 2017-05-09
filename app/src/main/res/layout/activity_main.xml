@@ -12,7 +12,7 @@
         android:layout_width="fill_parent"
         android:padding="30dip"
         android:gravity="center"
-        android:background="@drawable/fondo4"
+        android:background="@drawable/fondo"
         android:layout_height="fill_parent">
         <TextView
             android:layout_height="wrap_content"

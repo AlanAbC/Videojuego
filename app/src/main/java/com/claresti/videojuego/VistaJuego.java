@@ -127,11 +127,11 @@ public class VistaJuego extends View implements SensorEventListener {
 
             setBackgroundColor(Color.BLACK);
         } else {*/
-            drawableAsteroide[0] =context.getResources().getDrawable(R.drawable.asteroide1);
-            drawableAsteroide[1] = context.getResources().getDrawable(R.drawable.asteroide2);
-            drawableAsteroide[2] = context.getResources().getDrawable(R.drawable.asteroide3);
+            drawableAsteroide[0] =context.getResources().getDrawable(R.drawable.c1);
+            drawableAsteroide[1] = context.getResources().getDrawable(R.drawable.c2);
+            drawableAsteroide[2] = context.getResources().getDrawable(R.drawable.c3);
 
-            drawableNave = context.getResources().getDrawable(R.drawable.nave);
+            drawableNave = context.getResources().getDrawable(R.drawable.p);
             drawableMisil = context.getResources().getDrawable(R.drawable.misil1);
        // }
 

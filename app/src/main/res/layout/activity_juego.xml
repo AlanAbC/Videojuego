@@ -8,7 +8,7 @@
     <com.claresti.videojuego.VistaJuego
         android:id="@+id/VistaJuego"
         android:layout_width="fill_parent"
-        android:background="@drawable/fondo"
+        android:background="@drawable/fondo4"
         android:layout_height="wrap_content"
         android:focusable="true"/>
 </LinearLayout>
