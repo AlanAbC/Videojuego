@@ -30,6 +30,9 @@ import java.util.Vector;
  */
 
 public class VistaJuego extends View implements SensorEventListener {
+    /**
+     * Se declaran las variables que utilizaremos
+     */
     private int puntuacion = 0;
     // //// THREAD Y TIEMPO //////
     private boolean corriendo;
@@ -64,6 +67,11 @@ public class VistaJuego extends View implements SensorEventListener {
     private boolean misilActivo = false;
     private int distanciaMisil;
 
+    /**
+     * Funcion para asigna las texturas de los elementos
+     * @param context
+     * @param attrs
+     */
     public VistaJuego(Context context, AttributeSet attrs) {
         super(context, attrs);
         Drawable drawableNave, drawableMisil;
@@ -74,7 +82,7 @@ public class VistaJuego extends View implements SensorEventListener {
         } catch (Exception e) {
             numFragmentos = 3;
         }
-        if (pref.getString("graficos", "0").equals("0")) {
+        /*if (pref.getString("graficos", "0").equals("0")) {
             Path pathAsteroide = new Path();
             pathAsteroide.moveTo((float) 0.3, (float) 0.0);
             pathAsteroide.lineTo((float) 0.6, (float) 0.0);
@@ -118,18 +126,14 @@ public class VistaJuego extends View implements SensorEventListener {
             drawableMisil = dMisil;
 
             setBackgroundColor(Color.BLACK);
-        } else {
-            drawableAsteroide[0] = context.getResources().getDrawable(
-                    R.drawable.asteroide1);
-            drawableAsteroide[1] = context.getResources().getDrawable(
-                    R.drawable.asteroide2);
-            drawableAsteroide[2] = context.getResources().getDrawable(
-                    R.drawable.asteroide3);
+        } else {*/
+            drawableAsteroide[0] =context.getResources().getDrawable(R.drawable.asteroide1);
+            drawableAsteroide[1] = context.getResources().getDrawable(R.drawable.asteroide2);
+            drawableAsteroide[2] = context.getResources().getDrawable(R.drawable.asteroide3);
 
             drawableNave = context.getResources().getDrawable(R.drawable.nave);
-            drawableMisil = context.getResources().getDrawable(
-                    R.drawable.misil1);
-        }
+            drawableMisil = context.getResources().getDrawable(R.drawable.misil1);
+       // }
 
         Asteroides = new Vector<Grafico>();
         for (int i = 0; i < numAsteroides; i++) {
@@ -153,6 +157,14 @@ public class VistaJuego extends View implements SensorEventListener {
                     SensorManager.SENSOR_DELAY_GAME);
         }
     }
+
+    /**
+     * Funcion para generar los asteroides aleatoriamente
+     * @param ancho
+     * @param alto
+     * @param ancho_anter
+     * @param alto_anter
+     */
     @Override
     protected void onSizeChanged(int ancho, int alto, int ancho_anter,
                                  int alto_anter) {
@@ -170,6 +182,10 @@ public class VistaJuego extends View implements SensorEventListener {
         thread.start();
     }
 
+    /**
+     * Funcion para crear la animacion del misil
+     * @param canvas
+     */
     @Override
     protected synchronized void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -180,6 +196,10 @@ public class VistaJuego extends View implements SensorEventListener {
             asteroide.dibujaGrafico(canvas);
         }
     }
+
+    /**
+     * Clase para inicializar el hilo que va a correr el juego
+     */
     class ThreadJuego extends Thread {
         @Override
         public void run() {
@@ -191,6 +211,9 @@ public class VistaJuego extends View implements SensorEventListener {
         }
     }
 
+    /**
+     * Funcion para la actualizacion de la fisica y la gravedad de los elementos
+     */
     protected synchronized void actualizaFisica() {
         long ahora = System.currentTimeMillis();
         // No hagas nada si el período de proceso no se ha cumplido.
@@ -236,6 +259,10 @@ public class VistaJuego extends View implements SensorEventListener {
         ultimoProceso = ahora;
     }
 
+    /**
+     * Funcion para crear la animacion de la colision
+     * @param i
+     */
     private void destruyeAsteroide(int i) {
         int tam;
         if (Asteroides.get(i).getDrawable() != drawableAsteroide[2]) {
@@ -263,6 +290,9 @@ public class VistaJuego extends View implements SensorEventListener {
         }
     }
 
+    /**
+     * Funcion para salir del juego
+     */
     private void salir() {
         Bundle bundle = new Bundle();
         bundle.putInt("puntuacion", puntuacion);
@@ -272,6 +302,9 @@ public class VistaJuego extends View implements SensorEventListener {
         padre.finish();
     }
 
+    /**
+     * Funsion para disparar el misil
+     */
     private void ActivaMisil() {
         misil.setPosX(nave.getPosX() + nave.getAncho() / 2 - misil.getAncho()
                 / 2);
@@ -287,7 +320,12 @@ public class VistaJuego extends View implements SensorEventListener {
         misilActivo = true;
     }
 
-    // MANEJO DE LA NAVE CON TECLADO
+    /**
+     * Funcion para el manejo de la nave
+     * @param codigoTecla
+     * @param evento
+     * @return
+     */
     @Override
     public boolean onKeyDown(int codigoTecla, KeyEvent evento) {
         super.onKeyDown(codigoTecla, evento);
@@ -315,6 +353,12 @@ public class VistaJuego extends View implements SensorEventListener {
         return procesada;
     }
 
+    /**
+     * Funcion para validar si se presiono la pantalla con el teclado
+     * @param codigoTecla
+     * @param evento
+     * @return
+     */
     @Override
     public boolean onKeyUp(int codigoTecla, KeyEvent evento) {
         super.onKeyUp(codigoTecla, evento);
@@ -340,6 +384,11 @@ public class VistaJuego extends View implements SensorEventListener {
     private float mX = 0, mY = 0;
     private boolean disparo = false;
 
+    /**
+     * Funcion para validar si se esta utilizando el touch
+     * @param event
+     * @return
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
@@ -373,13 +422,21 @@ public class VistaJuego extends View implements SensorEventListener {
         return true;
     }
 
-    // MANEJO DE LA NAVE CON SENSORES
+    /**
+     * Funcion para el manejo de la nave con sensores
+     * @param sensor
+     * @param accuracy
+     */
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
     private boolean hayValorInicial = false;
     private float valorInicial;
 
+    /**
+     * Funsion para validar los cambios del sensor
+     * @param event
+     */
     public void onSensorChanged(SensorEvent event) {
         float valor = event.values[1];
         if (!hayValorInicial) {
@@ -389,14 +446,26 @@ public class VistaJuego extends View implements SensorEventListener {
         giroNave = (int) (valor - valorInicial) / 3;
     }
 
+    /**
+     *
+     * @param corriendo
+     */
     public void setCorriendo(boolean corriendo) {
         this.corriendo = corriendo;
     }
 
+    /**
+     *
+     * @param pausa
+     */
     public void setPausa(boolean pausa) {
         this.pausa = pausa;
     }
 
+    /**
+     *
+     * @param padre
+     */
     public void setPadre(Activity padre) {
         this.padre = padre;
     }

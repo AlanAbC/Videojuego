@@ -1,10 +1,11 @@
 package com.claresti.videojuego;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
-public class juego extends AppCompatActivity {
+public class juego extends Activity {
     private VistaJuego vistaJuego;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
